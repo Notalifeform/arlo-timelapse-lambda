@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "syncing images"
-aws s3 sync s3://lvl.14.snapshot/ .  > /dev/null
+aws s3 sync s3://$S3_BUCKET_NAME/ .  > /dev/null
 
 echo "creating symlinks"
 
