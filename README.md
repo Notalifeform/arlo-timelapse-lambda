@@ -109,5 +109,5 @@ _the ffmpeg command line will probably need some tuning to fit your situation/pr
 
 * arlo pyhton library - https://github.com/jeffreydwalter/arlo
 * make files for AWS Lambda - https://github.com/browniebroke/hello-lambda
-* ffmpeg commands fro creating slideshows - http://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
+* ffmpeg commands for creating slideshows - http://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
 
