@@ -1,5 +1,5 @@
 # arlo-timelapse-lambda
-Simpe AWS lambda function to create periodic snapshots to create a timelapse using a NetGear Arlo Pro Camera
+Simpe AWS lambda function to create a timelapse movie by creating periodic snapshots using a NetGear Arlo Pro Camera and ffmpeg (on a local machine)
 
 # Introduction 
 
