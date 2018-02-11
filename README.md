@@ -49,7 +49,7 @@ pipenv install
 
 ## Install aws CLI
 
-The aws library boto3 uses the aws CLI configuration to access S3
+The aws library boto3 uses the aws CLI configuration to access S3, we'll also use it later to retrieve the snapshots.
 
 ```
 brew install awscli 
