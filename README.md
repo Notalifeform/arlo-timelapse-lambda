@@ -112,7 +112,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/with-scheduledevents-example.html
 
 When you upload `delivery.zip` make sure to set the handler to `arlosnapshot.lambda_handler`
 
-The trigger you can set to something like `*/10 6-18 ? * MON-FRI *` (in this case: weekday create a snspashot every 10 minutes from 6AM to 6PM - GMT)
+The trigger you can set to something like `*/10 6-18 ? * MON-FRI *` (in this case: weekday create a snapshot every 10 minutes from 6AM to 6PM - GMT)
 
 # Downloading pictures and creating the timelapse
 
