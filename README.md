@@ -96,7 +96,7 @@ Script complete at 2018-02-10 23:03:24.209948
 ```
 
 
-# create distribution
+# Create distribution
 
 in your project directory run
 
@@ -104,7 +104,7 @@ in your project directory run
 make clean && make build
 ```
 
-# upload your code to AWS Lambda 
+# Upload your code to AWS Lambda 
 
 This is a good start to create a first version of your function
 
@@ -114,15 +114,18 @@ When you upload `delivery.zip` make sure to set the handler to `arlosnapshot.lam
 
 The trigger you can set to something like `*/10 6-18 ? * MON-FRI *` (in this case: weekday create a snspashot every 10 minutes from 6AM to 6PM - GMT)
 
-# Downloading pictures and creatin timelapse
+# Downloading pictures and creating the timelapse
 
-## install dependencies
+## Install dependencies
 
 ```
 brew install libvpx
 brew install ffmpeg --with-libvpx
 ```
-and run from your snapdir dir (asuming it is next to your project dir)
+
+## Create the timelapse
+
+Run from your snapdir dir (asuming it is next to your project dir)
 
 ```
 ../snapshot-lambda/tools/create-slideshow.sh
