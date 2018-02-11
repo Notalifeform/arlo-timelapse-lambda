@@ -66,6 +66,8 @@ Make sure the aws cli and python can write to aws S3
  - assign S3 full rights to user
  - setup was cli access key locally
 
+see https://boto3.readthedocs.io/en/latest/guide/quickstart.html
+
 
 ## Test locally
 
