@@ -8,3 +8,4 @@ verify_ssl = true
 
 requests = "*"
 "boto3" = "*"
+arlo = {git = "https://github.com/jeffreydwalter/arlo", ref = "4340589"}

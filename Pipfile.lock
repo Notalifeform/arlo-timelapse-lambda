@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5f235c83fe9c73bfc76c31be4b42473926d350fef756cc358f76162ef4b2302e"
+            "sha256": "2f374fcf8210781bb6365ed650999d295735382b2623d24148befc55040d35c8"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -26,6 +26,10 @@
         ]
     },
     "default": {
+        "arlo": {
+            "git": "https://github.com/jeffreydwalter/arlo",
+            "ref": "4340589"
+        },
         "boto3": {
             "hashes": [
                 "sha256:e76a1c6ef70ac39dc5e58c87e2985034362d0294c8c0676243db46efa1801c1a",
