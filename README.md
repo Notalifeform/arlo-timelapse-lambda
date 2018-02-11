@@ -7,7 +7,7 @@ When looking for a way to create a timelapse using a Arlo camera I bumped into [
 
 The script works like this:
 
-* AWS triggers a snapshot every 10 minutes (configurable)
+* AWS triggers a snapshot every 10 minutes (configurable in AWS)
 * Lambda function triggers a snapshot through the Arlo cloud endpoint
 * Lambda function retrieves and stores the snapshot in a private S3 bucket
 * On your desktop: grab all images and construct a timelapse uing ffmpeg
@@ -110,7 +110,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/with-scheduledevents-example.html
 
 When you upload `delivery.zip` make sure to set the handler to `arlosnapshot.lambda_handler`
 
-The trigger you can set to something like `*/10 6-18 ? * MON-FRI *`
+The trigger you can set to something like `*/10 6-18 ? * MON-FRI *` (in this case: weekday create a snspashot every 10 minutes from 6AM to 6PM - GMT)
 
 # Downloading pictures and creatin timelapse
 
