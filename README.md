@@ -139,6 +139,10 @@ this should
 
 _the ffmpeg command line will probably need some tuning to fit your situation/preferences_
 
+# Thank you
+
+Big thanks to [jeffdwalter](https://github.com/jeffreydwalter/) for providing the pyhton library and fixing a threadin issue that I ran into using this libraryon AWS Lambda.
+
 
 # See also
 
