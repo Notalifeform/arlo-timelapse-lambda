@@ -1,30 +1,55 @@
 # arlo-timelapse-lambda
-Little AWS lambda function to create periodic snapshots to create a timelapse using a NetGear Arlo Pro Camera
+Simpe AWS lambda function to create periodic snapshots to create a timelapse using a NetGear Arlo Pro Camera
 
 # Introduction 
 
-When looking for a way to create a timelapse using a timelapse using a Arlo camera I bumped into Jeffrey d Walter's Arlo python library that would enable me to accomplish my goal. Runing it on AWS lambda provides a cheap and hassle-free way to host such a repeating task
+When looking for a way to create a timelapse using a Arlo camera I bumped into [Jeffrey d Walter's Arlo python library](https://github.com/jeffreydwalter/arlo) that has all the functionality required. Running the code on AWS lambda provides a cheap (first year should be within the AWS free tier) and hassle-free way to host such a repeating task.
 
-_UNDER CONSTRUCTION_ 
+The script works like this:
+
+* AWS triggers a snapshot every 10 minutes (configurable)
+* Lambda function triggers a snapshot through the Arlo cloud endpoint
+* Lambda function retrieves and stores the snapshot in a private S3 bucket
+* On your desktop: grab all images and construct a timelapse uing ffmpeg
+
+
+Below are the steps I took to get everything up and running on OSX (other platforms should also work, but the commands will be a bit different)
+
 
 # Setup environment and dependencies
 
+Install [python](https://www.python.org/downloads/) - or you can install it using homebrew (OSX)
 
+Install pipenv
+
+```
 pip3 install --user pipenv
+```
+
+_depending on your install the command could be 'pip' instead of 'pip3'. I had to run the commands below to set up the enviroment properly_
 
 ```
 export LC_LOCAL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ```
 
+## Clone this project
+
+```
+git clone https://github.com/Notalifeform/arlo-timelapse-lambda
+```
+
 ## Install required pyhton libraries
 
-pipenv install
-pipenv install git+https://github.com/jeffreydwalter/arlo
+In your project directory run
 
+```
+pipenv install
+```
 
 ## Install aws CLI
-(to work w/ boto3)
+
+The aws library boto3 uses the aws CLI configuration to access S3
 
 ```
 brew install awscli 
@@ -32,12 +57,14 @@ brew install awscli
 
 ## AWS setup S3
 
+First sign up for an AWS account
+
 Make sure the aws cli and python can write to aws S3
 
  - create bucket
  - create user
  - assign S3 full rights to user
- - setup was cli access key
+ - setup was cli access key locally
 
 
 ## Test locally
@@ -61,7 +88,7 @@ it should output something like
 ```
 pipenv run python ./arlosnapshot.py
 Looking up sequence number
-Creating ARLO snapshot 143
+Creating ARLO snapshot 1
 retrieving and storing  snapshot_2018-02-10_23-03-18_000000143.jpg
 Script complete at 2018-02-10 23:03:24.209948
 ```
@@ -69,28 +96,34 @@ Script complete at 2018-02-10 23:03:24.209948
 
 # create distribution
 
+in your project directory run
+
+```
 make clean && make build
+```
 
 # upload your code to AWS Lambda 
 
+This is a good start to create a first version of your function
+
 https://docs.aws.amazon.com/lambda/latest/dg/with-scheduledevents-example.html
 
-!name function properly
+When you upload `delivery.zip` make sure to set the handler to `arlosnapshot.lambda_handler`
 
-```
-*/10 6-18 ? * MON-FRI *
-```
+The trigger you can set to something like `*/10 6-18 ? * MON-FRI *`
 
-# Download pictures and create timelapse
+# Downloading pictures and creatin timelapse
+
+## install dependencies
 
 ```
 brew install libvpx
 brew install ffmpeg --with-libvpx
 ```
-and run
+and run from your snapdir dir (asuming it is next to your project dir)
 
 ```
-./tools/create-slideshow.sh
+../snapshot-lambda/tools/create-slideshow.sh
 ```
 
 this should
@@ -101,13 +134,10 @@ this should
 
 _the ffmpeg command line will probably need some tuning to fit your situation/preferences_
 
-# Next steps
-
-* encrypt your username and password 
 
 # See also
 
 * arlo pyhton library - https://github.com/jeffreydwalter/arlo
 * make files for AWS Lambda - https://github.com/browniebroke/hello-lambda
-* ffmpeg commands for creating slideshows - http://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
+* ffmpeg commands fro creating slideshows - http://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
 
