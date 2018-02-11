@@ -141,7 +141,7 @@ _the ffmpeg command line will probably need some tuning to fit your situation/pr
 
 # Thank you
 
-Big thanks to [jeffdwalter](https://github.com/jeffreydwalter/) for providing the pyhton library and fixing a threadin issue that I ran into using this libraryon AWS Lambda.
+Big thanks to [jeffdwalter](https://github.com/jeffreydwalter/) for providing the pyhton library and quickly fixing a threading issue that I ran into using this library on AWS Lambda.
 
 
 # See also
