@@ -13,7 +13,9 @@ The script works like this:
 * On your desktop: grab all images and construct a timelapse uing ffmpeg
 
 
-Below are the steps I took to get everything up and running on OSX (other platforms should also work, but the commands will be a bit different)
+Below are the steps I took (roughly) to get everything up and running on OSX (other platforms should also work, but the commands will be a bit different)
+
+_This script is open-sourced under the MIT license; please use and distribute as you wish. There are no warranties; use at your own risk. Contributions are welcome_
 
 
 # Setup environment and dependencies
@@ -148,5 +150,5 @@ Big thanks to [jeffdwalter](https://github.com/jeffreydwalter/) for providing th
 
 * arlo pyhton library - https://github.com/jeffreydwalter/arlo
 * make files for AWS Lambda - https://github.com/browniebroke/hello-lambda
-* ffmpeg commands fro creating slideshows - http://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
+* ffmpeg commands for creating slideshows - http://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
 
