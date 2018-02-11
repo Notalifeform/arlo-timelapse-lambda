@@ -125,7 +125,7 @@ brew install ffmpeg --with-libvpx
 
 ## Create the timelapse
 
-Run from your snapdir dir (asuming it is next to your project dir)
+Run from your snapshot dir (asuming it is next to your project dir)
 
 ```
 ../snapshot-lambda/tools/create-slideshow.sh
