@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Arlo snapshot
+Parameters:
+  SnapshotCronSchedule:
+    Type: String
+    Default: 0 11-23 * * ? *
+    Description: AWS CloudWatch Event Rule cron schedule for snapshotting
+Resources:
+  LambdaSnapshot:
+    Type: AWS::Serverless::Function
+    Properties:
+      AutoPublishAlias: prod
+      CodeUri: s3://rawley-sam-package/4ed1069ca2c0eae9f36ae2dda9fb233d
+      Environment:
+        Variables:
+          S3_BUCKET_NAME:
+            Ref: BucketArloSnapshots
+          ARLO_USERNAME: thomas@rawley.net
+          ARLO_PASSWORD: FiJDrv45ZMmke7%#ifp53rJj7KtJ@^KdVcDG
+      Events:
+        SnapshotInvoker:
+          Type: Schedule
+          Properties:
+            Enabled: true
+            Schedule:
+              Fn::Sub: cron(${SnapshotCronSchedule})
+      Handler: arlosnapshot.lambda_handler
+      Layers:
+      - Ref: LayerArlo
+      MemorySize: 128
+      Policies:
+      - Version: 2012-10-17
+        Statement:
+        - Effect: Allow
+          Action:
+          - s3:*
+          Resource:
+          - Fn::Sub: ${BucketArloSnapshots.Arn}
+          - Fn::Sub: ${BucketArloSnapshots.Arn}/*
+        - Effect: Allow
+          Action:
+          - kms:Decrypt
+          Resource: '*'
+      Runtime: python3.7
+      Timeout: 120
+  LayerArlo:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      Description: Arlo
+      ContentUri: s3://rawley-sam-package/42e4631bcc19cff86684dbf75c70c5a6
+      CompatibleRuntimes:
+      - python3.7
+      RetentionPolicy: Delete
+  BucketArloSnapshots:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            KMSMasterKeyID: alias/aws/s3
+            SSEAlgorithm: aws:kms
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true

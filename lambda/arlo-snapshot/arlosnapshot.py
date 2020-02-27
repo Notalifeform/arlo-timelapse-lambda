@@ -3,10 +3,10 @@ import os
 import boto3
 import botocore
 from datetime import datetime
-from urllib.request import urlopen
-from arlo import Arlo
-from pprint import pprint
-import base64
+#from urllib.request import urlopen
+from Arlo import Arlo
+#from pprint import pprint
+#import base64
 from base64 import b64decode
 
 s3 = boto3.resource('s3')
@@ -22,7 +22,6 @@ else:
     # string was not encrypted
     USERNAME = USERNAME_ENC
     PASSWORD = PASSWORD_ENC
-
 
 
 
